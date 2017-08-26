@@ -24,7 +24,6 @@ treeMethodz.contains = function(target) {
   if ( this.value === target) {
     return true;
   } 
-
   if (target < this.value && this.left !== null) {
     return this.left.contains(target);
   }  
@@ -36,10 +35,20 @@ treeMethodz.contains = function(target) {
 };
 
 treeMethodz.depthFirstLog = function(cb) {
-  for (var key in this.value) {
-    cb(key);
+  //BASE CASE
+    //when there is a value, invoke the callback function on it
+  if (this.value) {
+    cb(this.value);
+  } 
+  //RECURSIVE CASE
+    //when right and left property has a tree
+  if (this.right !== null) {
+    return this.right.depthFirstLog(cb);
   }
-
+  
+  if (this.left !== null) {
+    return this.left.depthFirstLog(cb);
+  }
 };
 /*
  * Complexity: What is the time complexity of the above functions?
